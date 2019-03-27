@@ -1,0 +1,22 @@
+{
+  "name": "rehype-wrapify",
+  "version": "0.1.0",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-flow": "^7.0.0",
+    "hast-util-to-html": "^5.0.0",
+    "hastscript": "^5.0.0",
+    "jest": "^24.5.0"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.3.0"
+  }
+}
