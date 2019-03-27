@@ -16,6 +16,55 @@ Wrap individual heading sections in Rehype
 
 <br>
 
-Used in [devhints-engine],
+Used in [devhints-engine], but still to be cleaned up for general use, stay tuned :)
 
 [devhints-engine]: https://github.com/rstacruz/devhints-engine
+
+## Examples
+
+Use `{ tagName: 'h2' }` to wrap each H2 section into its own `<div class='h2-section'>` element.
+
+```js
+wrap(root, {
+  tagName: 'h2',
+  sectionClass: ['h2-section'],
+  bodyClass: ['body']
+})
+```
+
+<table>
+<tr><th>Input</th><th>Output</th></tr>
+<tr><td>
+
+```html
+<div>
+  <h2>Introduction</h2>
+  <p>Hello there</p>
+  <h2>Thanks</h2>
+  <p>That's all folks!</p>
+</div>
+```
+
+</td><td>
+
+```html
+<div>
+  <div className='h2-section'>
+    <h2>Introduction</h2>
+
+    <div className='body'>
+      <p>Hello there</p>
+    </div>
+  </div>
+
+  <div className='h2-section'>
+    <h2>Thanks</h2>
+
+    <div className='body'>
+      <p>That's all folks!</p>
+    </div>
+  </div>
+</div>
+```
+
+</td></tr></table>
