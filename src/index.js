@@ -64,10 +64,7 @@ function wrapify(
       const body = wrapper([...bodyClass, extraClass], [])
 
       // Wrap
-      return [
-        ...list,
-        wrapper([...sectionClass, extraClass], [node, body])
-      ]
+      return [...list, wrapper([...sectionClass, extraClass], [node, body])]
     } else if (list.length) {
       // Not prelude
       return updateLast(list, last => ({
@@ -100,6 +97,6 @@ function wrapper(className /*: Array<string> */, children /*: HastNodeList */) {
 /*
  * Export
  */
-  
+
 export { wrapH2, wrapH3, wrapify }
 export default wrap
