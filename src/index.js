@@ -10,7 +10,7 @@ import {
  * Wrap everything.
  */
 
-export default function(root) {
+function wrap(root) {
   root = wrapH2(root)
 
   root = updateChildren(root, children =>
@@ -26,7 +26,7 @@ export default function(root) {
  * Wrap H2 headings.
  */
 
-export function wrapH2(root) {
+function wrapH2(root) {
   return wrapify(root, {
     tagName: 'h2',
     sectionClass: ['h2-section'],
@@ -38,7 +38,7 @@ export function wrapH2(root) {
  * Wraps H3 headings.
  */
 
-export function wrapH3(root) {
+function wrapH3(root) {
   return wrapify(root, {
     tagName: 'h3',
     sectionClass: ['h3-section'],
@@ -50,16 +50,24 @@ export function wrapH3(root) {
  * Wraps headings.
  */
 
-export function wrapify(
+function wrapify(
   root,
   { tagName = 'h2', sectionClass = ['h2-section'], bodyClass = ['body'] } = {}
 ) {
   const children = root.children.reduce((list, node) => {
     if (node.tagName === tagName) {
       // H2 heading - create a new `.h2-section`.
+      // Get the class name of the h2.
       const extraClass = getClassName(node)
+
+      // Pass that same class name into the body.
       const body = wrapper([...bodyClass, extraClass], [])
-      return [...list, wrapper([...sectionClass, extraClass], [node, body])]
+
+      // Wrap
+      return [
+        ...list,
+        wrapper([...sectionClass, extraClass], [node, body])
+      ]
     } else if (list.length) {
       // Not prelude
       return updateLast(list, last => ({
@@ -88,3 +96,10 @@ function wrapper(className /*: Array<string> */, children /*: HastNodeList */) {
     children
   }
 }
+
+/*
+ * Export
+ */
+  
+export { wrapH2, wrapH3, wrapify }
+export default wrap
